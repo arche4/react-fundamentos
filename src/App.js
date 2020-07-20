@@ -1,12 +1,37 @@
-import React from 'react'
-import TarjetaFruta from './componentes/TarjetaFruta'
+import React, { Component } from "react";
+class PersistenciaEventos extends Component {
 
+  state={
+    color: 'blue'
+  }
+
+  handlerChange = (event) => {
+    const color = event.target.value
+
+    this.setState(state => ({
+      color
+    }))
+  };
+  render() {
+    return (
+      <div>
+        <input type="text" onChange={this.handlerChange} />
+        <h1
+          style=
+          {{
+            color: this.state.color,
+          }}
+          >
+          {this.state.color}
+        </h1>
+      </div>
+    )
+  }
+}
 const App = () => (
   <div>
-    <TarjetaFruta name={'Sandia'} price={5.00} />
-    <TarjetaFruta name={'Naranja'} price={1.50} />
-    <TarjetaFruta name='Kiwi' price={3.30} />
+    <PersistenciaEventos />
   </div>
-)
+);
 
-export default App
+export default App;
