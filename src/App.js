@@ -1,71 +1,37 @@
-import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
+import React, { Component } from "react";
+import propTypes from "prop-types";
 
-class PortalModal extends Component {
-
-  render () {
-
-    if (!this.props.visible) {
-      return null
-    }
-
-    const styles = {
-      width: '100%',
-      height: '100%',
-      position: 'absolute',
-      top: '0',
-      left: '0',
-      background: 'linear-gradient(to top right, #667eea, #764ba2',
-      opacity: '0.9',
-      color: '#FFF'
-    }
-  
-    return ReactDOM.createPortal((
-      <div style={styles}>
-        { this.props.children }
+class Profile extends Component {
+  static propTypes = {
+    name: propTypes.string,
+    bio: propTypes.string,
+    email: propTypes.string,
+    age: propTypes.number     
+  };
+  render() {
+    const { name, bio, email } = this.props;
+    return (
+      <div>
+        <h1>{name}</h1>
+        <p>{bio}</p>
+        <a href={`mailto:${email}`}>{email}</a>
       </div>
-    ), document.getElementById('modal-root'))
+    );
   }
 }
 
 class App extends Component {
-  state = {
-    visible: false,
-    num: 0
-  }
-
-  componentDidMount () {
-    setInterval(() => {
-      this.setState(state => ({
-        ...state,
-        num: state.num + 1
-      }))
-    }, 1000)
-  }
-
-  mostrar = () => {
-    this.setState({ visible: true })
-  }
-
-  cerrar = () => {
-    this.setState({ visible: false })
-  }
-
-  render () {
+  render() {
     return (
       <div>
-        <button onClick={this.mostrar}>
-          Mostrar
-        </button>
-        <PortalModal visible={this.state.visible}>
-          Hola desde un PortalModal 😲 { this.state.num }
-          <button onClick={this.cerrar}>
-            Cerrar
-          </button>
-        </PortalModal>
+        <Profile
+          name={1234}
+          bio="soy una desarrolladorar FullStack"
+          email="mnujima@gmail.com"
+        />
       </div>
-    )
+    );
   }
 }
 
-export default App
+export default App;
