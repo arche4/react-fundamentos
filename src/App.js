@@ -1,32 +1,12 @@
-import React, { Component } from "react";
+import React from 'react'
+import TarjetaFotografia from './componentes/TarjetaFotografia'
 
-class App extends Component {
-  state = {
-    user: {
-      name: "Manuela Jiménez",
-      country: "Colombia",
-      twitter: "@arche4m",
-      youtube: "mnujima",
-    },
-  };
-  render() {
-    const {user} = this.state
-    const keys = Object.keys(user);
-    return (
-      <div>
-        <h3>Iterando propiedades de objetos ⭐️</h3>
-        <ul>
-        {keys.map(key =>(
-          <li>
-          <strong>
-          {key}: {user[key]}
-          </strong>
-          </li>
-        ))}
-        </ul>
-      </div>
-    );
-  }
-}
 
-export default App;
+const App = () => (
+  <div>
+    <TarjetaFotografia/>
+    
+  </div>
+)
+
+export default App
