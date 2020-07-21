@@ -1,37 +1,71 @@
-import React, { Component } from "react";
-class PersistenciaEventos extends Component {
+import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
 
-  state={
-    color: 'blue'
+class PortalModal extends Component {
+
+  render () {
+
+    if (!this.props.visible) {
+      return null
+    }
+
+    const styles = {
+      width: '100%',
+      height: '100%',
+      position: 'absolute',
+      top: '0',
+      left: '0',
+      background: 'linear-gradient(to top right, #667eea, #764ba2',
+      opacity: '0.9',
+      color: '#FFF'
+    }
+  
+    return ReactDOM.createPortal((
+      <div style={styles}>
+        { this.props.children }
+      </div>
+    ), document.getElementById('modal-root'))
+  }
+}
+
+class App extends Component {
+  state = {
+    visible: false,
+    num: 0
   }
 
-  handlerChange = (event) => {
-    const color = event.target.value
+  componentDidMount () {
+    setInterval(() => {
+      this.setState(state => ({
+        ...state,
+        num: state.num + 1
+      }))
+    }, 1000)
+  }
 
-    this.setState(state => ({
-      color
-    }))
-  };
-  render() {
+  mostrar = () => {
+    this.setState({ visible: true })
+  }
+
+  cerrar = () => {
+    this.setState({ visible: false })
+  }
+
+  render () {
     return (
       <div>
-        <input type="text" onChange={this.handlerChange} />
-        <h1
-          style=
-          {{
-            color: this.state.color,
-          }}
-          >
-          {this.state.color}
-        </h1>
+        <button onClick={this.mostrar}>
+          Mostrar
+        </button>
+        <PortalModal visible={this.state.visible}>
+          Hola desde un PortalModal 😲 { this.state.num }
+          <button onClick={this.cerrar}>
+            Cerrar
+          </button>
+        </PortalModal>
       </div>
     )
   }
 }
-const App = () => (
-  <div>
-    <PersistenciaEventos />
-  </div>
-);
 
-export default App;
+export default App
