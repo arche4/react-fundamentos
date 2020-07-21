@@ -3,11 +3,14 @@ import propTypes from "prop-types";
 
 class Profile extends Component {
   static propTypes = {
-    name: propTypes.string,
-    bio: propTypes.string,
+    name: propTypes.string.isRequired,
+    bio: propTypes.string.isRequired,
     email: propTypes.string,
     age: propTypes.number     
   };
+
+
+
   render() {
     const { name, bio, email } = this.props;
     return (
@@ -19,6 +22,7 @@ class Profile extends Component {
     );
   }
 }
+
 
 class App extends Component {
   render() {
