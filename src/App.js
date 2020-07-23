@@ -1,14 +1,14 @@
-import React from 'react'
-import TarjetaFotografia from './componentes/TarjetaFotografia'
-import ListaFruta from './componentes/ListaFruta'
-
+import React from "react";
+import TarjetaFotografia from "./componentes/TarjetaFotografia";
+import ListaFruta from "./componentes/ListaFruta";
+import Graficas from "./componentes/Graficas";
 
 const App = () => (
   <div>
-    <TarjetaFotografia/>
-    <ListaFruta/>
-    
+    <Graficas />
+    <TarjetaFotografia />
+    <ListaFruta />
   </div>
-)
+);
 
-export default App
+export default App;
